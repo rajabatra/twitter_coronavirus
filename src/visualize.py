@@ -26,31 +26,21 @@ if args.percent:
         counts[args.key][k] /= counts['_all'][k]
 
 # print the count values
-#items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
-#for k,v in items:
-#    print(k,':',v)
+items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
+for k,v in items:
+    print(k,':',v)
 
-sorted_counts = sorted(counts[args.key].items(), key=lambda item: item[1])
-top_items = sorted_counts[-10:]
-
-plt.xlabel('Keys')
-plt.ylabel('Values')
-plt.title('Top 10 Keys and their Values')
-
-# rotate x-axis labels for better visibility
-plt.xticks(rotation=45)
-
-# save the plot as PNG file
-if args.input_path[-1] == 'y':
-    plt.xlabel("country")
-else:
-    plt.xlabel("language")
-if args.percent:
-    plt.ylabel('% of total tweets')
-else:
-    plt.ylabel('# of tweets')
-
-if args.input_path[-1] == 'y':
-    plt.savefig(args.key[1:] + '_country.png')
-else:
-    plt.savefig(args.key[1:] + '_lang.png')
+# get the top 10 keys and sort from low to high
+items_10 = items[:10]
+keys = [x[0] for x in items_10]
+values = [x[1] for x in items_10]
+sorted_keys = keys[::-1]
+sorted_values = values[::-1]
+print(sorted_keys)
+print(sorted_values)
+#plot the data
+plt.bar(range(len(sorted_keys)), sorted_values,)
+plt.xticks(range(len(sorted_keys)), sorted_keys)
+plt.xlabel(args.input_path[8:])
+plt.ylabel('number of tweets')
+plt.savefig(args.key[1:] + args.input_path[8:] +'.png')
