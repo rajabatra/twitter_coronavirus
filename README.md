@@ -65,7 +65,7 @@ The last task I worked on was creating a new file `alternative_reduce.py` that w
 
 Using this method, I created a visualization of 4 different hastags: #sick, #flu, #cough, and #sneeze
 This is shown in the graph below:
-<img src=sick_flu_cough_sneeze.png width=100% />
+<img src=sick_flu_cough_sneeze_virus_covid19.png width=100% />
 
 
 
